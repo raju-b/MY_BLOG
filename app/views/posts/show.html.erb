@@ -1,0 +1,49 @@
+<h1>Posts#Show</h1>
+
+<p>
+	<strong>Title:</strong>
+	<%=@post.title %>
+</p>
+
+<p>
+  <%= image_tag(@post.image.url(:medium)) if @post.image.exists? %>
+</p>
+
+<p>
+	<strong>Description:</strong>
+	<%= @post.description %>
+</p>
+
+
+<h2>Comments</h2>
+<% @post.comments.each do |comment| %>
+  <p>
+    <strong>Comment:</strong>
+    <%= comment.comment %>
+  </p>
+  <p>this was created by <%= comment.user.email %></p>
+  <% if comment.user_id == current_user.id || @post.user_id == current_user.id %>
+    <p>
+      <%= link_to 'Destroy Comment', [comment.post, comment],
+                   method: :delete,
+                   data: { confirm: 'Are you sure?' } %>
+    </p>
+  <% end %>
+<% end %>
+
+
+<h2>Give Your  Comment:</h2>
+<%= form_with(model: [ @post, @post.comments.build ], local: true) do |form| %>
+  <p>
+    <%= form.label :comment%><br>
+    <%= form.text_field :comment %>
+  </p>
+  
+  <p>
+    <%= form.submit %>
+  </p>
+<% end %>
+<span>
+<%= link_to "NewPost", new_post_path,method: 'get'%>			
+<%= link_to "Back",posts_path%>
+</span>

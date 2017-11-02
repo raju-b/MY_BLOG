@@ -1,0 +1,30 @@
+
+<%if @post.errors.any? %>
+  <ul>
+    <% @post.errors.full_messages.each do |mess| %>
+    
+      <li><%= mess %></li>
+  </ul>
+     <% end %>
+<% end %>
+
+<%= form_with(model: post, local: true) do |form| %>
+  <p>
+    <%= form.label :title %><br>
+    <%= form.text_field :title %>
+  </p>
+  <p>
+    <%= form.label :image %><br>
+    <%= form.file_field :image %>
+  </p>
+  <p>
+    <%= form.label :description %><br>
+    <%= form.text_area :description%>
+  </p>
+ 
+  <p>
+    <%= form.submit %>
+  </p>
+
+   <p><%= link_to "Back",posts_path%></p>		
+<% end %>
