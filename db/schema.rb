@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171101170827) do
+ActiveRecord::Schema.define(version: 20171102171735) do
 
   create_table "comments", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -31,6 +31,8 @@ ActiveRecord::Schema.define(version: 20171101170827) do
     t.integer "image_file_size"
     t.datetime "image_updated_at"
     t.integer "user_id"
+    t.integer "like", default: 0
+    t.integer "dis_like", default: 0
   end
 
   create_table "users", force: :cascade do |t|

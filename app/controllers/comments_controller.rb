@@ -1,16 +1,37 @@
 class CommentsController < ApplicationController
 	def create
-    @post =Post.find(params[:post_id])
-    @comment = @post.comments.create(comment_params)
+      @post =Post.find(params[:post_id])
+     if  @comment = @post.comments.create(comment_params)
+      flash[:alert] = "comment created to this post...."
+      redirect_to post_path(@post)
+    else 
+      render 'index'
+    end
     
-    redirect_to post_path(@post)
-    flash[:notice] = " $$ comment created successfully to this post $$"
+  end
+  def edit
+    @post = Post.find(params[:post_id])
+    @comment = @post.comments.find(params[:id])
+
+
+  end
+
+  def update
+  
+    @post = Post.find(params[:post_id])
+    @comment = @post.comments.find(params[:id])
+    if @comment.update(comment_params)
+      redirect_to posts_path(@post)
+    else
+      render 'edit'
+    end
+  
   end
    def destroy
     @post = Post.find(params[:post_id])
     @comment = @post.comments.find(params[:id])
     @comment.destroy
-    flash[:notice] = "$$ comment deleted successfully $$"
+    flash[:alert] = "comment deleted successfully... "
     redirect_to post_path(@post)
   end
  

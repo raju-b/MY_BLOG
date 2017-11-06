@@ -1,0 +1,19 @@
+<h1 style="color:#8A2BE2;">Edit Comment</h1>
+
+
+  <table class="table">
+    <%= form_with(model: [ @post, @comment]) do |form| %>
+
+      <div class="form-group">
+      	<label>
+        <p>
+          <%= form.label :comment%><br>
+          <%= form.text_field :comment,class: "form-control" %>
+        </p>
+      </div>
+        </label>
+        <p>
+          <%= form.submit "Update",class: "btn btn-primary" %>
+        </p>
+    <% end %>
+    </table>

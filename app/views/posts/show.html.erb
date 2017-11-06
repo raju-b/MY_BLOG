@@ -1,12 +1,13 @@
-<h1>Posts#Show</h1>
+<h1 style = "color: green;text-align: center"><b>Showing Post</b></h1>
 
+  <legend class="scheduler-border">
 <p>
 	<strong>Title:</strong>
 	<%=@post.title %>
 </p>
 
 <p>
-  <%= image_tag(@post.image.url(:medium)) if @post.image.exists? %>
+<%= image_tag(@post.image.url(:medium),class: "img-fluid img-thumbnail") if @post.image.exists?%>
 </p>
 
 <p>
@@ -16,34 +17,48 @@
 
 
 <h2>Comments</h2>
-<% @post.comments.each do |comment| %>
-  <p>
-    <strong>Comment:</strong>
-    <%= comment.comment %>
-  </p>
-  <p>this was created by <%= comment.user.email %></p>
-  <% if comment.user_id == current_user.id || @post.user_id == current_user.id %>
-    <p>
-      <%= link_to 'Destroy Comment', [comment.post, comment],
-                   method: :delete,
-                   data: { confirm: 'Are you sure?' } %>
-    </p>
-  <% end %>
-<% end %>
+<div class = "commenter">
+  <table clsss = "table">
+    <% @post.comments.each do |comment| %>
+      <p>
+        <strong>Comment:</strong>
+        <%= comment.comment %>
+      </p>
+      <p>this was created by <%= comment.user.email %></p> 
+    <% if comment.user_id == current_user.id || @post.user_id == current_user.id %>
+      <span>
+          <%= link_to 'Edit Comment',edit_post_comment_path(@post, comment), class: "btn btn-info" %>
+            
+          <%= link_to 'DestroyComment', [comment.post, comment],
+                    method: :delete,
+                    data: { confirm: 'Are you sure?' },class: "btn btn-outline-dark" %>
+      </span>
+    <% end %>
+    <% end %>
 
 
-<h2>Give Your  Comment:</h2>
-<%= form_with(model: [ @post, @post.comments.build ], local: true) do |form| %>
-  <p>
-    <%= form.label :comment%><br>
-    <%= form.text_field :comment %>
-  </p>
-  
-  <p>
-    <%= form.submit %>
-  </p>
-<% end %>
-<span>
-<%= link_to "NewPost", new_post_path,method: 'get'%>			
-<%= link_to "Back",posts_path%>
-</span>
+    <h2 style="color:#8A2BE2;">Give Your  Comment:</h2>
+
+    <%= form_with(model: [ @post, @post.comments.build ], local: true) do |form| %>
+
+      <div class="form-group">
+        <label>
+        <p>
+          <%= form.label :comment%><br>
+          <%= form.text_field :comment,class: "form-control" %>
+        </p>
+      </label>
+
+      </div>
+        
+        <p>
+          <%= form.submit "submit",class: "btn btn-primary" %>
+        </p>
+    <% end %>
+  </table>
+  <span>
+    <%= link_to "New Post", new_post_path,method: 'get',class: "btn btn-success btn-lg"%>			
+    <%= link_to "Back",posts_path,class: "btn btn-info btn-lg"%>
+  </span>
+</div>
+</legend>

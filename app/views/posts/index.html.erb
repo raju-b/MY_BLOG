@@ -1,29 +1,35 @@
-<h1>Listing Posts</h1>
-<div class="container">
+<h2 style= "color: green;text-align: center;"><b>Listing Posts</b></h2>
+<form class="border"> 
+  <legend class="scheduler-border">
+  <div class="container">
 
-<table>
-  <tr>
-    <th>Title</th>
-    <th>description</th>
-    <th>image</th>
-  </tr>
- 
-  <% @posts.each do |post| %>
-    <tr>
-      <td><%= post.title %></td>
-      <td><%= post.description %></td>
-      <td><%= image_tag post.image.url,:size => "100x100" %></td>
-      <td><%= link_to 'Show', post_path(post) %></td>
-      <% if post.user_id == current_user.id %>
-        <td><%= link_to 'Edit', edit_post_path(post) %></td>
-        <td><%= link_to "destory",post_path(post), method: 'delete',
-                          data: {confirm: 'Are you sure'} %></td>
-      <% end %>  
-    </tr>
-
-  <% end %>
-
-</table>
-<p><%= link_to "NewPost",new_post_path,method: 'get'%></p>
-
-</div>
+  <table class="table">
+    <thead>
+        <tr>
+          <th style="color:#8A2BE2;">Title</th>
+          <th style="color:#8A2BE2;">Description</th>
+          <th style="color:#8A2BE2;">Image</th>
+          
+        </tr>
+    </thead>
+    <% @posts.each do |post| %>
+      <tbody>
+        <tr>
+            
+          <td><b><%= post.title %></b></td>
+          <td><%= post.description %></td>
+          <td><%= image_tag post.image.url(:thumb),class: "img-fluid img-thumbnail" %></td>
+          <td><%= link_to 'Show', post_path(post), class: "btn btn-primary" %></td>
+          <% if post.user_id == current_user.id %>
+            <td><%= link_to 'Edit', edit_post_path(post), class: "btn btn-info" %></td>
+            <td><%= link_to "destory",post_path(post), method: 'delete',
+                              data: {confirm: 'Are you sure'}, class: "btn btn-warning" %></td>
+          <% end %>                    
+        </tr>
+      </tbody>
+    <% end %>
+  </table>
+       <p><%= link_to "NewPost",new_post_path,method: 'get',class: "btn btn-success btn-lg"%></p>
+  </div>
+  </legend>
+</form>
