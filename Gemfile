@@ -17,8 +17,8 @@ gem 'puma', '~> 3.7'
 # Use SCSS for stylesheets
 gem 'bootstrap-sass', '~> 3.3.7'
 gem 'sass-rails', '>= 3.2'
-
-
+#using omniauth for login with social websites
+gem 'omniauth-facebook'
 #for uploading images use paperclips
 gem "paperclip", "~> 5.1"
 # See https://github.com/rails/execjs#readme for more supported runtimes

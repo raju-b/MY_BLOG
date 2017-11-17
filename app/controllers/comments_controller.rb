@@ -1,7 +1,7 @@
 class CommentsController < ApplicationController
 	def create
       @post =Post.find(params[:post_id])
-     if  @comment = @post.comments.create(comment_params)
+    if  @comment = @post.comments.create(comment_params)
       flash[:alert] = "comment created to this post...."
       redirect_to post_path(@post)
     else 

@@ -1,35 +1,39 @@
-<h2 style= "color: green;text-align: center;"><b>Listing Posts</b></h2>
-<form class="border"> 
-  <legend class="scheduler-border">
-  <div class="container">
-
+  <div class = "well">
+  
+<h2 style= "color: green;text-align: center;"><b><u>Listing Posts</u></b></h2>
+  <p><%= link_to "NewPost",new_post_path,method: 'get',class: "btn btn-success btn-lg"%></p>
   <table class="table">
+
     <thead>
         <tr>
-          <th style="color:#8A2BE2;">Title</th>
-          <th style="color:#8A2BE2;">Description</th>
-          <th style="color:#8A2BE2;">Image</th>
+          <th style="color:#8A2BE2;font-size: 30px;">Title</th>
+          <th style="color:#8A2BE2;font-size: 30px;">Description</th>
+          <th style="color:#8A2BE2;font-size: 30px;">Images</th>
           
         </tr>
     </thead>
     <% @posts.each do |post| %>
       <tbody>
-        <tr>
-            
+        <tr> 
           <td><b><%= post.title %></b></td>
           <td><%= post.description %></td>
-          <td><%= image_tag post.image.url(:thumb),class: "img-fluid img-thumbnail" %></td>
-          <td><%= link_to 'Show', post_path(post), class: "btn btn-primary" %></td>
+          <%post.images.each do |image|%>
+          <td><%= image_tag image.image.url(:thumb),class: "img-fluid img-thumbnail" %> 
+          </td>
+          <% end %>
+          <div class="btn-group" >
+          <td><%= link_to 'Show', post_path(post.id), class: "btn btn-primary" %></td>
           <% if post.user_id == current_user.id %>
-            <td><%= link_to 'Edit', edit_post_path(post),method: :get, class: "btn btn-info" %></td>
+            <td><%= link_to 'Edit', edit_post_path(post.id),method: :get, class: "btn btn-info" %></td>
             <td><%= link_to "destory",post_path(post), method: 'delete',
-                              data: {confirm: 'Are you sure'}, class: "btn btn-warning" %></td>
-          <% end %>                    
+                      data: {confirm: 'Are you sure'}, class: "btn btn-warning" %></td>
+          <% end %>               
+          </div>     
         </tr>
       </tbody>
     <% end %>
   </table>
-       <p><%= link_to "NewPost",new_post_path,method: 'get',class: "btn btn-success btn-lg"%></p>
-  </div>
-  </legend>
-</form>
+</div>
+</div>
+
+

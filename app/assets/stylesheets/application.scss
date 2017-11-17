@@ -1,2 +1,21 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+
+.table {
+background-color: pink;
+}
+.devise-form{
+	text-align: center;
+}
+.post-form {
+	text-align: center;
+}
+.shower{
+	text-align: center;
+
+}
+.table > tbody > tr > td {
+     vertical-align: middle;
+}
+
