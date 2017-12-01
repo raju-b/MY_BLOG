@@ -19,7 +19,7 @@ class PostsController < ApplicationController
   end
  
   def create
-    byebug
+    
     images_attributes = post_params[:images_attributes]
     p_params = {title: post_params[:title], description: post_params[:description]}
     @post = current_user.posts.build(p_params)

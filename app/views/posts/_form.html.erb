@@ -10,9 +10,9 @@
      <% end %>
 <% end %>
   <legend class="scheduler-border">
-<%#= form_with(model: post, local: true) do |form| %>
+<%#= form_with(model: @post, local: true) do |form| %>
 
-<%= form_with scope: @post, url: posts_path, local: true do |form| %>
+<%= form_with scope: :post, url: posts_path, local: true do |form| %>
   <div class="form-group">
     <label>
       <%= form.label :title %><br>
