@@ -5,13 +5,8 @@ class Post < ApplicationRecord
 	has_many :images,dependent: :destroy 
 	
 	after_destroy :destroy_action
+accept_nested_attributes_for :images
 
-	private
-	def destroy_action
-		byebug
-	
-puts 'post deleted successfully!!!!!!!!'
-	end
 	 # has_attached_file :image, :styles => { :medium => "500x500>", :thumb => "2000x200>" }
   #      validates_attachment_content_type :image, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"] 
 end
