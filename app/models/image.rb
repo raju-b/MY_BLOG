@@ -7,5 +7,6 @@ class Image < ApplicationRecord
        validates_attachment_content_type :image, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"]
 
   validates :image, presence: true 
- 
+
+ this is also a github checking purpose 
 end
