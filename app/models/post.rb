@@ -4,7 +4,6 @@ class Post < ApplicationRecord
 	has_many :comments
 	has_many :images,dependent: :destroy 
 	
-	after_destroy :destroy_action
-
+	after_destroy :destroy_acti
 	accepts_nested_attributes_for :images 
 end
