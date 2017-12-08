@@ -10,13 +10,11 @@
       	<strong>Title:</strong>
       	<%=@post.title %>
       </p>
-
-
       <p>
         <strong>Images:</strong>
-        <%@post.images.each do |image|%>
+          <%@post.images.each do |image|%>
           <%= image_tag(image.image.url(:thumb),class: "img-fluid img-thumbnail") %>
-        <%end%>
+          <%end%>
       </p>
 
       <p>
