@@ -6,5 +6,5 @@ class Post < ApplicationRecord
 	
 	after_destroy :destroy_action
 
-	accept_nested_attributes_for :images 
+	accepts_nested_attributes_for :images 
 end
